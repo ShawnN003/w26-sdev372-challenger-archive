@@ -4,13 +4,12 @@ CREATE TABLE poolPlayers(
     lastName VARCHAR(100) NOT NULL,
     win INT,
     loss INT
-    
 );
 
 CREATE TABLE mmaFighters(
     fighterId INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(100) NOT NULL,
-    lastName VARCHAR(100) NOT NULL,
+    lastName VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE mmaMatches (
@@ -21,7 +20,7 @@ CREATE TABLE mmaMatches (
     dodges INT,
     blocks INT,
     notes VARCHAR(300), 
-    fighterSecondaryId INT KEY
+    FOREIGN KEY (opponentId) REFERENCES Persons(fighterId)
 );
 
 CREATE TABLE poolGames(
@@ -31,6 +30,6 @@ CREATE TABLE poolGames(
     shotPot INT,
     errors INT,
     effSafety INT,
-    playerSecondaryId INT KEY
+    FOREIGN KEY (opponentId) REFERENCES poolPlayers(playerId)
 );
 
