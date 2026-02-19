@@ -1,13 +1,32 @@
 import Header from "../Components/Header";
 
 export default function Home() {
-  const handleSubmit = {
-    //take all the info
-    //add it to a json obj
-    //call an api link
-    //send the json obj via api link
-    
-  } 
+    async function handleSubmit(formData) {
+        "use server"; // remove if using client handler
+        const playerOne = {
+            name: formData.get("playerone"),
+            score: Number(formData.get("playeronescore")),
+            madeBalls: Number(formData.get("playeronemade")),
+            attemptedBalls: Number(formData.get("playeroneatt")),
+            errors: Number(formData.get("playeroneerr")),
+            safeties: Number(formData.get("playeronesafe")),
+        }
+        const playerTwo = {
+            name: formData.get("playertwo"),
+            score: Number(formData.get("playertwoscore")),
+            madeBalls: Number(formData.get("playertwomade")),
+            attemptedBalls: Number(formData.get("playertwoatt")),
+            errors: Number(formData.get("playertwoerr")),
+            safeties: Number(formData.get("playertwosafe")),
+        }
+        const data = {
+            playerOne: playerOne,
+            playerTwo: playerTwo,
+        }
+        console.log(data);
+
+        return data;
+    }
   return (
     <>
       <Header />
@@ -21,13 +40,13 @@ export default function Home() {
                 <label for="playeronescore">Score: </label>
                     <input type="number" id="playeronescore" name="playeronescore"></input>
                 <label>Made Balls</label>
-                    <input type="number" id="playeronemade"></input>
+                    <input type="number" id="playeronemade" name="playeronemade"></input>
                 <label>Attempted Balls</label>
-                    <input type="number" id="playeroneatt"></input>
+                    <input type="number" id="playeroneatt" name="playeroneatt"></input>
                 <label>Errors</label>
-                    <input type="number" id="playeroneerr"></input>
+                    <input type="number" id="playeroneerr" name="playeroneerr"></input>
                 <label>Safeties</label>
-                    <input type="number" id="playeronesafe"></input>
+                    <input type="number" id="playeronesafe" name="playeronesafe"></input>
             </div>
             <div class="player-form">
             <p>Player Two</p>
@@ -36,13 +55,13 @@ export default function Home() {
                 <label for="playertwoscore">Score: </label>
                     <input type="number" id="playertwoscore" name="playertwoscore"></input>
                 <label>Made Balls</label>
-                    <input type="number" id="playertwomade"></input>
+                    <input type="number" id="playertwomade" name="playertwomade"></input>
                 <label>Attempted Balls</label>
-                    <input type="number" id="playertwoatt"></input>
+                    <input type="number" id="playertwoatt" name="playertwoatt"></input>
                 <label>Errors</label>
-                    <input type="number" id="playertwoerr"></input>
+                    <input type="number" id="playertwoerr" name="playertwoerr"></input>
                 <label>Safeties</label>
-                    <input type="number" id="playertwosafe"></input>
+                    <input type="number" id="playertwosafe" name="playertwosafe"></input>
             </div>
         </div>
         <button type="submit">Submit</button>
