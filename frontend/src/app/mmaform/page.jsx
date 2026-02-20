@@ -2,10 +2,6 @@ import Header from "../Components/Header";
 
 export default function Home() {
   const handleSubmit = {
-    //take all the info
-    //add it to a json obj
-    //call an api link
-    //send the json obj via api link
     
   } 
   return (

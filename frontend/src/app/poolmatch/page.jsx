@@ -18,6 +18,11 @@ export default async function Home() {
       .then(data => setStats(data))
       .catch(err => console.error(err));
   }, []);
+
+  if (!matches || !stats) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <>
       <Header />

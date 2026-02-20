@@ -14,7 +14,10 @@ export default function Home() {
       .catch(err => console.error(err));
   }, []);
 
-
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <>
       <Header />
