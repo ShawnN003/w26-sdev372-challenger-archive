@@ -1,5 +1,4 @@
 import express from 'express'
-// import sequelize from './db/db.js';
 import cors from 'cors'
 
 
