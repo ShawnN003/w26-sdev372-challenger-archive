@@ -1,8 +1,7 @@
 import Header from "../Components/Header";
 
 export default function Home() {
-    async function handleSubmit(formData) {
-        "use server"; // remove if using client handler
+    function handleSubmit(formData) {
         const playerOne = {
             name: formData.get("playerone"),
             score: Number(formData.get("playeronescore")),

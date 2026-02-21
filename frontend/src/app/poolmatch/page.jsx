@@ -22,15 +22,15 @@ export default async function Home() {
   if (!matches || !stats) {
     return <div>Loading...</div>;
   }
-  
+
   return (
     <>
       <Header />
       <h1>PoolMatch</h1>
-      <span>{matches}</span>
+      <span>{JSON.stringify(matches)}</span>
 
       <h2>Mock Stats</h2>
-      <span>{stats}</span>
+      <span>{JSON.stringify(stats)}</span>
     </>
   );
 }
