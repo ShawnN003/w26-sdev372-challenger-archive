@@ -1,15 +1,17 @@
+"use client"
+
 import Header from "../Components/Header";
 
 export default function Home() {
-  const handleSubmit = {
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
   } 
   return (
     <>
       <Header />
       <h1>MMA Form</h1>
-      <form action={handleSubmit}>
-        <div class="player-form-div">
+      <form onSubmit={handleSubmit}>
+        <div className="player-form-div">
             <div class="player-form">
                 <p>Fighter One</p>
                 <label>Name</label>
