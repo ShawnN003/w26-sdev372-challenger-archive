@@ -1,6 +1,7 @@
 "use client"
 
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -27,14 +28,13 @@ export default function Home() {
     <>
       <Header />
       <h1>PoolMatch</h1>
-      <div className="stats-class">
+      <div className="matches-class">
         <p>Message: {matches.message}</p>
         <p>Status: {matches.status}</p>
-        <p></p>
       </div>
 
       <h2>Mock Stats</h2>
-      <div className="stats-class">
+      <div className="matches-class">
         <p>Message: {stats.message}</p>
         <p>shotAtt: {stats.shotAtt}</p>
         <p>shotPot: {stats.shotPot}</p>
@@ -42,8 +42,8 @@ export default function Home() {
         <p>effSafety: {stats.effSafety}</p>
         <p><strong>pWin:</strong> {stats.pWin}%</p>
         <p>Status: {stats.status}</p>
-        <p></p>
       </div>
+      <Footer />
     </>
   );
 }

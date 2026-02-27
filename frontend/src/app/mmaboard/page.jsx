@@ -1,4 +1,5 @@
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
 import MMACard from "../Components/MMACard";
 
 export default function Home() {
@@ -7,11 +8,12 @@ export default function Home() {
       <Header />
       <h1>MMABoard</h1>
       <div class="match-cards-list">
-      <MMACard />
-      <MMACard />
-      <MMACard />
-      <MMACard />
+        <MMACard />
+        <MMACard />
+        <MMACard />
+        <MMACard />
       </div>
+      <Footer />
     </>
   );
 }
