@@ -1,4 +1,4 @@
-export function calcOddsPool(req,res) {
+export function calcOddsPool(req, res) {
     const shotAtt = 20;
     const shotPot = 18;
     const errors = 2;

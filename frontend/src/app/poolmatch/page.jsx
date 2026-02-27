@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react";
 import Header from "../Components/Header";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [matches, setMatches] = useState(null);
@@ -9,12 +9,12 @@ export default function Home() {
 
   useEffect(() => {
     fetch("http://localhost:3001/players")
-      .then(res => res.text())
+      .then(res => res.json())
       .then(data => setMatches(data))
       .catch(err => console.error(err));
 
     fetch("http://localhost:3001/players/odds")
-      .then(res => res.text())
+      .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error(err));
   }, []);
@@ -27,10 +27,23 @@ export default function Home() {
     <>
       <Header />
       <h1>PoolMatch</h1>
-      <span>{JSON.stringify(matches)}</span>
+      <div className="stats-class">
+        <p>Message: {matches.message}</p>
+        <p>Status: {matches.status}</p>
+        <p></p>
+      </div>
 
       <h2>Mock Stats</h2>
-      <span>{JSON.stringify(stats)}</span>
+      <div className="stats-class">
+        <p>Message: {stats.message}</p>
+        <p>shotAtt: {stats.shotAtt}</p>
+        <p>shotPot: {stats.shotPot}</p>
+        <p>errors: {stats.errors}</p>
+        <p>effSafety: {stats.effSafety}</p>
+        <p><strong>pWin:</strong> {stats.pWin}%</p>
+        <p>Status: {stats.status}</p>
+        <p></p>
+      </div>
     </>
   );
 }

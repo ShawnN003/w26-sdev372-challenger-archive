@@ -169,3 +169,8 @@ h1 {
   margin: 5px 0px 25px 0px;
   display: inline-block; 
 }
+
+.stats-class {
+  background: rgb(184, 200, 179);
+  padding: 10px;
+}
