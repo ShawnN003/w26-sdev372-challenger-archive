@@ -7,5 +7,3 @@ export default () => {
     router.get("/", matchesController);
     return router;
 };
-
-  

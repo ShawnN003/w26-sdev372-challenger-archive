@@ -125,6 +125,7 @@ footer {
 }
 
 .link-buttons {
+  display: inline-block;
   text-decoration: none;
   color: #3c3c3c;
   font-weight: bold;

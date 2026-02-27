@@ -1,5 +1,4 @@
-export function calcOddsMma(req,res) {
-
+export function calcOddsMma(req, res) {
     //Advntages
     const headShot = 10;
     const bodyShot = 5;
@@ -13,10 +12,10 @@ export function calcOddsMma(req,res) {
     const shotsBlocked = -1;
 
     const totalScore = headShot + bodyShot + dodge + shotAtt + takedowns
-                 + missedAtt + blocks + shotsBlocked;   
+        + missedAtt + blocks + shotsBlocked;
 
     const maxScore = headShot + bodyShot + dodge + shotAtt + takedowns;
-    
+
     let percentage = (totalScore / maxScore) * 100;
 
     const data = {
