@@ -1,15 +1,11 @@
 import express from 'express'
-import { playerController } from '../controllers/playerController.js'
+import { playerController, postPoolMatch } from '../controllers/playerController.js'
 import { calcOddsPool } from '../controllers/calcOddsPool.js';
-import { calcOddsMma } from '../controllers/calcOddsMma.js';
 
 const router = express.Router();
 
-export default () => {
-    router.get("/", playerController);
-    router.get("/odds", calcOddsPool);
-    router.get("/oddsMma", calcOddsMma);
+router.get("/", playerController);
+router.post("/", postPoolMatch);
+router.get("/odds", calcOddsPool);
 
-    return router;
-  };
-
+export default router;

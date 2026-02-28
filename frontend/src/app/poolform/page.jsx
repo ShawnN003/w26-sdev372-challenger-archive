@@ -25,6 +25,7 @@ export default function Home() {
             playerTwo: playerTwo,
         }
         console.log(data);
+        // have this page submit a POST request to poolGames
 
         return data;
     }
