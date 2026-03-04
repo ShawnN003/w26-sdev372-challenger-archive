@@ -1,4 +1,5 @@
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
 import PoolCard from "../Components/PoolCard";
 
 export default function Home() {
@@ -7,11 +8,12 @@ export default function Home() {
       <Header />
       <h1>PoolBoard</h1>
       <div class="match-cards-list">
-      <PoolCard />
-      <PoolCard />
-      <PoolCard />
-      <PoolCard />
+        <PoolCard />
+        <PoolCard />
+        <PoolCard />
+        <PoolCard />
       </div>
+      <Footer />
     </>
   );
 }

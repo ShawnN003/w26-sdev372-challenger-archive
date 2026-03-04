@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
 
 export default function Home() {
     async function handleSubmit(e) {
@@ -77,8 +78,9 @@ export default function Home() {
                         <input type="number" id="playertwosafe" name="playertwosafe"></input>
                     </div>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="link-buttons">Submit</button>
             </form>
+            <Footer />
         </>
     );
 }

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  
+
   const [data, setData] = useState(null);
   const [stats, setStats] = useState(null);
 
@@ -14,8 +15,8 @@ export default function Home() {
       .then(data => setData(data))
       .catch(err => console.error(err));
 
-      fetch("http://localhost:3001/players/odds")
-      .then(res => res.text())
+    fetch("http://localhost:3001/players/oddsMma")
+      .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error(err));
   }, []);
@@ -27,11 +28,22 @@ export default function Home() {
   return (
     <>
       <Header />
-      <h1>PoolMatch</h1>
-      <span>{JSON.stringify(data)}</span>
+      <h1>MMA Match</h1>
+      <div className="matches-class">
+        <p>Message: {data.message}</p>
+        <p>Status: {data.status}</p>
+      </div>
 
       <h2>Mock Stats</h2>
-      <span>{JSON.stringify(stats)}</span>
+      <div className="matches-class">
+        <p>Message: {stats.message}</p>
+        <p>headshot: {stats.headShot}</p>
+        <p>bodyshot: {stats.bodyShot}</p>
+        <p>dodges: {stats.dodges}</p>
+        <p>takedowns: {stats.takedowns}</p>
+        <p><strong>pWin:</strong> {stats.pWin}%</p>
+      </div>
+      <Footer />
     </>
   );
 

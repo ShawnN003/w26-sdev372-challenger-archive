@@ -22,14 +22,14 @@ app.get("/", (req, res) => {
             Accept: "application/JSON"
         }
     })
-    .then(res => res.json())
-    .then(dataFromMyJSON => {
-        console.log(dataFromMyJSON.all[2].strSport),
-        res.send({
-            sport: dataFromMyJSON.all[2].strSport,
-            sportPic: dataFromMyJSON.all[3].strSportThumb
-         })
-    })
+        .then(res => res.json())
+        .then(dataFromMyJSON => {
+            console.log(dataFromMyJSON.all[2].strSport),
+                res.send({
+                    sport: dataFromMyJSON.all[2].strSport,
+                    sportPic: dataFromMyJSON.all[3].strSportThumb
+                })
+        })
 })
 
 app.listen(PORT, () => {
