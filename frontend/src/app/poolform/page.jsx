@@ -4,7 +4,11 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer"
 
 export default function Home() {
-    function handleSubmit(formData) {
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
         const playerOne = {
             name: formData.get("playerone"),
             score: Number(formData.get("playeronescore")),
@@ -26,8 +30,16 @@ export default function Home() {
             playerTwo: playerTwo,
         }
         console.log(data);
+        // have this page submit a POST request to poolGames
 
-        return data;
+        // return data;
+        await fetch("http://localhost:3001/players/poolGames", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
     }
     return (
         <>

@@ -22,18 +22,32 @@ CREATE TABLE IF NOT EXISTS mmaMatches (
     bodyHits INT,
     dodges INT,
     blocks INT,
-    notes VARCHAR(300), 
-    opponentId INT,
-    FOREIGN KEY (opponentId) REFERENCES mmaFighters(fighterId)
+    notes VARCHAR(300),
+
+    fighterOneId INT,
+    fighterTwoId INT,
+
+    FOREIGN KEY (fighterOneId) REFERENCES mmaFighters(fighterId),
+    FOREIGN KEY (fighterTwoId) REFERENCES mmaFighters(fighterId)
 );
 
 CREATE TABLE IF NOT EXISTS poolGames(
     gameId INT AUTO_INCREMENT PRIMARY KEY,
-    playerId INT NOT NULL,
-    shotAtt INT,
-    shotPot INT,
-    errors INT,
-    effSafety INT,
-    opponentId INT,
-    FOREIGN KEY (playerId) REFERENCES poolPlayers(playerId)
+    playerOneId INT NOT NULL,
+    playerTwoId INT NOT NULL,
+    playerOneScore INT,
+    playerTwoScore INT,
+    playerOneShotAtt INT,
+    playerTwoShotAtt INT,
+    playerOneShotPot INT,
+    playerTwoShotPot INT,
+    playerOneErrors INT,
+    playerTwoErrors INT,
+    playerOneSafeties INT,
+    playerTwoSafeties INT,
+    matchDate DATETIME,
+    location VARCHAR(255),
+
+    FOREIGN KEY (playerOneId) REFERENCES poolPlayers(playerId),
+    FOREIGN KEY (playerTwoId) REFERENCES poolPlayers(playerId)
 );
