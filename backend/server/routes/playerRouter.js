@@ -6,10 +6,9 @@ import { calcOddsMma } from '../controllers/calcOddsMma.js';
 const router = express.Router();
 
 export default () => {
-    router.get("/", playerController);
-    router.get("/odds", calcOddsPool);
-    router.get("/oddsMma", calcOddsMma);
+  router.get("/", playerController);
+  router.get("/odds", calcOddsPool);
+  router.get("/oddsMma", calcOddsMma);
 
-    return router;
-  };
-
+  return router;
+};

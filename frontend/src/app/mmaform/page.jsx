@@ -1,48 +1,52 @@
+"use client"
+
 import Header from "../Components/Header";
+import Footer from "../Components/Footer"
 
 export default function Home() {
-  const handleSubmit = {
-    
-  } 
-  return (
-    <>
-      <Header />
-      <h1>MMA Form</h1>
-      <form action={handleSubmit}>
-        <div class="player-form-div">
-            <div class="player-form">
-                <p>Fighter One</p>
-                <label>Name</label>
-                    <input type="text"></input>
-                <label>Name</label>
-                    <input type="number"></input>
-                <label>Head Hits</label>
-                    <input type="number"></input>
-                <label>Body Hits</label>
-                    <input type="number"></input>
-                <label>Dodges</label>
-                    <input type="number"></input>
-                <label>Notes</label>
-                    <input type="text"></input>
-            </div>
-            <div className="player-form">
-            <p>Fighter Two</p>
-            <label>Name</label>
-                <input type="text"></input>
-            <label>Name</label>
-                <input type="number"></input>
-            <label>Head Hits</label>
-                <input type="number"></input>
-            <label>Body Hits</label>
-                <input type="number"></input>
-            <label>Dodges</label>
-                <input type="number"></input>
-            <label>Notes</label>
-                <input type="text"></input>
-            </div>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </>
-  );
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+    return (
+        <>
+            <Header />
+            <h1>MMA Form</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="player-form-div">
+                    <div class="player-form">
+                        <p>Fighter One</p>
+                        <label>Name</label>
+                        <input type="text"></input>
+                        <label>Name</label>
+                        <input type="number"></input>
+                        <label>Head Hits</label>
+                        <input type="number"></input>
+                        <label>Body Hits</label>
+                        <input type="number"></input>
+                        <label>Dodges</label>
+                        <input type="number"></input>
+                        <label>Notes</label>
+                        <input type="text"></input>
+                    </div>
+                    <div className="player-form">
+                        <p>Fighter Two</p>
+                        <label>Name</label>
+                        <input type="text"></input>
+                        <label>Name</label>
+                        <input type="number"></input>
+                        <label>Head Hits</label>
+                        <input type="number"></input>
+                        <label>Body Hits</label>
+                        <input type="number"></input>
+                        <label>Dodges</label>
+                        <input type="number"></input>
+                        <label>Notes</label>
+                        <input type="text"></input>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <Footer />
+        </>
+    );
 }
