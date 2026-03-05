@@ -20,7 +20,7 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 ## API configuration
 
-The frontend reads the backend base URL from `NEXT_PUBLIC_API_URL`. The default is `http://localhost:3001`, so you can run `NEXT_PUBLIC_API_URL=http://localhost:3001 npm run dev` during local development if you need to override it. When the app is deployed via Docker Compose the variable is already set to `http://backend:3001`, and you can change it to the public IP of the server (for example `http://100.110.254.69:3001`) before rebuilding so browsers receive the correct backend host.
+Frontend API requests are routed through `NEXT_PUBLIC_API_URL`, which falls back to `http://localhost:3001`. You can override it locally via `.env` (see `.env.example`) or by exporting the variable before running `npm run dev`. Docker Compose passes the variable from your host environment, so you can set `NEXT_PUBLIC_API_URL` to the public backend URL before building on a remote machine for browsers to reach the correct host.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
