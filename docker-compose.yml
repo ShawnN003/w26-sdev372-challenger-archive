@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:latest
+    image: mysql:8.4
     environment:
       MYSQL_ROOT_PASSWORD: MbE62o3mB
       MYSQL_DATABASE: challengerarchive
@@ -30,14 +30,15 @@ services:
       DB_ADMIN_PASSWORD: MbE62o3mB
       DB_AUTO_RELOAD: "true"
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
 
   frontend:
     build: ./frontend
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL
+      - NEXT_PUBLIC_API_URL: 
     depends_on:
       - backend
 
