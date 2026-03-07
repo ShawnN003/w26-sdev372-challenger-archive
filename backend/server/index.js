@@ -14,20 +14,33 @@ app.use(express.json());
 app.use("/mma", mmaRouter);
 app.use("/pool", poolRouter);
 
-app.get("/", (req, res) => {
-    fetch("https://www.thesportsdb.com/api/v2/examples/all_sports.json", {
-        headers: {
-            Accept: "application/JSON"
-        }
-    })
-    .then(res => res.json())
-    .then(dataFromMyJSON => {
-        console.log(dataFromMyJSON.all[2].strSport),
-        res.send({
-            sport: dataFromMyJSON.all[2].strSport,
-            sportPic: dataFromMyJSON.all[3].strSportThumb
-        })
-    })
+app.get("/", async (req, res) => {
+  try {
+    const response = await fetch("https://www.thesportsdb.com/api/v2/examples/all_sports.json", {
+      headers: {
+        Accept: "application/JSON",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Remote API responded with ${response.status}`);
+    }
+
+    const dataFromMyJSON = await response.json();
+    const sportEntry = dataFromMyJSON?.all?.[2];
+    const sportPicEntry = dataFromMyJSON?.all?.[3];
+
+    console.log(sportEntry?.strSport);
+    return res.json({
+      sport: sportEntry?.strSport ?? 'Unknown',
+      sportPic: sportPicEntry?.strSportThumb ?? null,
+    });
+  } catch (error) {
+    console.error('Failed to fetch sports metadata:', error);
+    return res.status(502).json({
+      error: 'Unable to fetch sports metadata at this time.',
+    });
+  }
 });
 
 app.listen(PORT, () => {
