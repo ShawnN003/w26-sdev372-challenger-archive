@@ -35,9 +35,9 @@
 
 ## Docker
 
-- Run `docker-compose up --build` from the repo root.  
+- Build and run the full stack with `docker compose up --build` from the repo root. Compose passes `NEXT_PUBLIC_API_URL=http://backend:3001` as a build arg and runtime env so the production frontend bundle targets the backend service name inside the Docker network.  
 - The stack brings up MySQL, waits for the database healthcheck, runs `npm run db:reload` via the backend entrypoint (`scripts/docker-entrypoint.sh`), and then starts the Express server and Next frontend.  
-- Backend API is available on `http://localhost:3001`; frontend is `http://localhost:3000`.
+- Backend API is available on `http://localhost:3001`; frontend is `http://localhost:3000`. If you rebuild manually, remember to pass `NEXT_PUBLIC_API_URL` into the frontend build phase (`docker compose build` already does this for you).
 
 ## Available Scripts
 
@@ -57,4 +57,6 @@
 
 ## Testing & QA
 
-- No automated tests yet; running `npm test` still prints the default placeholder script from `backend/server/package.json`. You can manually verify by submitting matches through the forms and checking the leaderboard/match pages.
+- Backend tests: `cd backend/server && npm test` runs the Vitest suite that mocks the Sequelize layer and exercises the pool/MMA controllers.  
+- Frontend tests: `cd frontend && npm test` runs Vitest in JSDOM, covering the Header, MMA form, and placeholder cards.  
+- The API still exposes the root `/` route that proxies a sports metadata call with resilience to failures; running the backend tests or starting the server manually is the best way to confirm the new error-handling behavior. You can also use the existing UI forms to exercise the leaderboards/match endpoints after seeding the database.

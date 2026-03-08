@@ -48,20 +48,36 @@ async function reloadDatabase() {
     const winSql = `
       UPDATE poolPlayers p
       LEFT JOIN (
-        SELECT playerOneId AS playerId, COUNT(*) AS wins
-        FROM poolGames
-        WHERE playerOneScore > playerTwoScore
-        GROUP BY playerOneId
+        SELECT playerId, SUM(win_count) AS wins FROM (
+          SELECT playerOneId AS playerId, COUNT(*) AS win_count
+          FROM poolGames
+          WHERE playerOneScore > playerTwoScore
+          GROUP BY playerOneId
+          UNION ALL
+          SELECT playerTwoId AS playerId, COUNT(*) AS win_count
+          FROM poolGames
+          WHERE playerTwoScore > playerOneScore
+          GROUP BY playerTwoId
+        ) wins_combined
+        GROUP BY playerId
       ) w ON w.playerId = p.playerId
       SET p.win = COALESCE(w.wins, 0);
     `;
     const lossSql = `
       UPDATE poolPlayers p
       LEFT JOIN (
-        SELECT playerTwoId AS playerId, COUNT(*) AS losses
-        FROM poolGames
-        WHERE playerTwoScore > playerOneScore
-        GROUP BY playerTwoId
+        SELECT playerId, SUM(loss_count) AS losses FROM (
+          SELECT playerOneId AS playerId, COUNT(*) AS loss_count
+          FROM poolGames
+          WHERE playerOneScore < playerTwoScore
+          GROUP BY playerOneId
+          UNION ALL
+          SELECT playerTwoId AS playerId, COUNT(*) AS loss_count
+          FROM poolGames
+          WHERE playerTwoScore < playerOneScore
+          GROUP BY playerTwoId
+        ) losses_combined
+        GROUP BY playerId
       ) l ON l.playerId = p.playerId
       SET p.loss = COALESCE(l.losses, 0);
     `;
